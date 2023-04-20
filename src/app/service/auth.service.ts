@@ -6,11 +6,13 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AuthService {
 
+  isLoggedIn = false;
   baseUrl = "http://localhost:8080/api/v1/visitor";
 
   constructor(private httpClient: HttpClient) { }
 
   login(email:string) {
+    this.isLoggedIn = true;
     return this.httpClient.get(`${this.baseUrl}/get/${email}`);
   }
 
@@ -18,4 +20,11 @@ export class AuthService {
     return this.httpClient.post(`${this.baseUrl}/register`, user);
   }
 
+  logout() {
+    this.isLoggedIn = false;
+  }
+
+  isAuthenticated() {
+    return this.isLoggedIn;
+  }
 }
