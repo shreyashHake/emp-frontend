@@ -12,13 +12,10 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
 
-
-
-
   constructor(
-    private authService : AuthService,
-    private router : Router
-    ) {
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.initializeForm();
   }
 

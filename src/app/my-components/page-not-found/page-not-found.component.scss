@@ -1,0 +1,29 @@
+body {
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.error-template h1 {
+  font-size: 70px;
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+.error-template p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.error-actions {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.error-actions .btn {
+  margin-right: 10px;
+}

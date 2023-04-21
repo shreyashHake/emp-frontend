@@ -9,6 +9,9 @@ import { HomeComponent } from './my-components/home/home.component';
 import { PageNotFoundComponent } from './my-components/page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddComponent } from './my-components/crud/add/add.component';
+import { ViewComponent } from './my-components/crud/view/view.component';
+import { NavComponent } from './my-components/nav/nav.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AddComponent,
+    ViewComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
