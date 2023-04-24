@@ -7,16 +7,18 @@ import { HttpClient } from "@angular/common/http";
 export class AuthService {
 
   isLoggedIn = false;
-  baseUrl = "http://localhost:8080/api/v1/visitor";
+  baseUrl = "http://localhost:8080/api/v1/auth";
 
   constructor(private httpClient: HttpClient) { }
 
-  login(email:string) {
+  login(email:string, password:string) {
+    const user = {email, password};
     this.isLoggedIn = true;
-    return this.httpClient.get(`${this.baseUrl}/get/${email}`);
+    return this.httpClient.post(`${this.baseUrl}/authenticate`, user);
   }
 
   register(user: any) {
+    ;
     return this.httpClient.post(`${this.baseUrl}/register`, user);
   }
 

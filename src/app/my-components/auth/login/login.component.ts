@@ -29,21 +29,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.formLogin.value.email).subscribe(
-      (response) => {
+    this.authService.login(this.formLogin.value.email, this.formLogin.value.password).subscribe({
+      next: (response) => {
         this.userdata = response;
-
-        if (this.userdata != null && this.userdata.password === this.formLogin.value.password) {
-          this.router.navigate(['home']);
-        } else {
-          window.alert("Invalid credentials !");
-        }
+        console.log(this.userdata);
+        this.router.navigate(['/home'])
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
         window.alert("Invalid credentials!");
       }
-    )
+    });
+
   }
 
 }
