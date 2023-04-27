@@ -32,7 +32,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formLogin.value.email, this.formLogin.value.password).subscribe({
       next: (response) => {
         this.userdata = response;
-        console.log(this.userdata);
+        const jsonString = JSON.stringify(response);
+        const jsonResponse = JSON.parse(jsonString);
+        const token = jsonResponse.token;
+        const role = jsonResponse.role;
+        console.log('result : ' + response);
+        console.log('Token : ' + token);
+        console.log('Role : ' + role);
         this.router.navigate(['/home'])
       },
       error: (error) => {
@@ -40,7 +46,5 @@ export class LoginComponent implements OnInit {
         window.alert("Invalid credentials!");
       }
     });
-
   }
-
 }

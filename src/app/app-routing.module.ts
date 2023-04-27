@@ -12,12 +12,12 @@ const routes: Routes = [
   {path:"", redirectTo:"login", pathMatch:"full"},
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
-  {path:"home", component:HomeComponent, canActivate:[AuthGuardService]},
-  // {path:"home", component:HomeComponent},
-  // {path:"add", component:AddComponent},
-  // {path:"view", component:ViewComponent},
-  {path:"add", component:AddComponent, canActivate:[AuthGuardService]},
-  {path:"view", component:ViewComponent, canActivate:[AuthGuardService]},
+  // {path:"home", component:HomeComponent, canActivate:[AuthGuardService]},
+  {path:"home", component:HomeComponent},
+  {path:"add", component:AddComponent},
+  {path:"view", component:ViewComponent},
+  // {path:"add", component:AddComponent, canActivate:[AuthGuardService]},
+  // {path:"view", component:ViewComponent, canActivate:[AuthGuardService]},
   {path:"**", component:PageNotFoundComponent}
 ];
 
