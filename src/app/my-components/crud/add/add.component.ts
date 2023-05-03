@@ -36,7 +36,7 @@ export class AddComponent {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
     console.log("Hehe :" + this.empForm);
-    this.authService.addEmployee(this.empForm.value, token).subscribe({
+    this.authService.addEmployee(this.empForm.value).subscribe({
       next: (response) => {
         this.empForm.reset();
         this.router.navigate(['home']);

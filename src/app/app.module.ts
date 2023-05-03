@@ -8,10 +8,11 @@ import { RegisterComponent } from './my-components/auth/register/register.compon
 import { HomeComponent } from './my-components/home/home.component';
 import { PageNotFoundComponent } from './my-components/page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddComponent } from './my-components/crud/add/add.component';
 import { ViewComponent } from './my-components/crud/view/view.component';
 import { NavComponent } from './my-components/nav/nav.component';
+import { TokenIntercepterService } from './service/token-intercepter.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { NavComponent } from './my-components/nav/nav.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenIntercepterService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

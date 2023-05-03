@@ -49,11 +49,15 @@ export class AuthService {
   }
 
   // Employee management :
+
   empUrl = "http://localhost:8080/api/v1/employee"
-  addEmployee(user: any, token: string | null): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.httpClient.post(`${this.empUrl}/save`, user, { headers: headers });
+  addEmployee(user: any): Observable<any> {
+    console.log(user);
+
+    return this.httpClient.post(`${this.empUrl}/save`, user);
+  }
+
+  getToken() {
+    return localStorage.getItem('token') || '';
   }
 }
