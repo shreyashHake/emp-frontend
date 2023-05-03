@@ -7,7 +7,7 @@
           <h4 class="text-center">Create an account</h4>
         </div>
         <div class="card-body">
-          <form class="mt-1" [formGroup]="registerForm" (ngSubmit)="register()">
+          <form class="mt-1" [formGroup]="empForm" (ngSubmit)="addEmployee()">
             <div class="form-row">
               <div class="form-group">
                 <label for="first_name">First Name</label>
@@ -18,12 +18,12 @@
                   placeholder="Enter first name"
                   formControlName="firstname"
                   [class.is-invalid]="
-                    registerForm.get('firstname')?.invalid &&
-                    registerForm.get('firstname')?.touched
+                    empForm.get('firstname')?.invalid &&
+                    empForm.get('firstname')?.touched
                   "
                 />
                 <div
-                  *ngIf="registerForm.get('firstname')?.hasError('required')"
+                  *ngIf="empForm.get('firstname')?.hasError('required')"
                   class="invalid-feedback"
                   class="invalid-feedback"
                 >
@@ -39,12 +39,12 @@
                   placeholder="Enter last name"
                   formControlName="lastname"
                   [class.is-invalid]="
-                    registerForm.get('lastname')?.invalid &&
-                    registerForm.get('lastname')?.touched
+                    empForm.get('lastname')?.invalid &&
+                    empForm.get('lastname')?.touched
                   "
                 />
                 <div
-                  *ngIf="registerForm.get('lastname')?.hasError('required')"
+                  *ngIf="empForm.get('lastname')?.hasError('required')"
                   class="invalid-feedback"
                   class="invalid-feedback"
                 >
@@ -61,18 +61,17 @@
                 placeholder="Enter email"
                 formControlName="email"
                 [class.is-invalid]="
-                  registerForm.get('email')?.invalid &&
-                  registerForm.get('email')?.touched
+                  empForm.get('email')?.invalid && empForm.get('email')?.touched
                 "
               />
               <div
-                *ngIf="registerForm.get('email')?.hasError('required')"
+                *ngIf="empForm.get('email')?.hasError('required')"
                 class="invalid-feedback"
               >
                 Please enter email address.
               </div>
               <div
-                *ngIf="registerForm.get('email')?.hasError('email')"
+                *ngIf="empForm.get('email')?.hasError('email')"
                 class="invalid-feedback"
               >
                 Please enter a valid email address.
@@ -80,44 +79,39 @@
             </div>
 
             <div class="form-group">
-              <label for="password">Password</label>
+              <label for="phone">Password</label>
               <input
-                type="password"
+                type="tel"
                 class="form-control"
-                id="password"
-                placeholder="Password"
-                formControlName="password"
+                id="phone"
+                placeholder="phone"
+                formControlName="phone"
                 [class.is-invalid]="
-                  registerForm.get('password')?.invalid &&
-                  registerForm.get('password')?.touched
+                  empForm.get('phone')?.invalid && empForm.get('phone')?.touched
                 "
               />
 
               <div
-                *ngIf="registerForm.get('password')?.hasError('required')"
+                *ngIf="empForm.get('phone')?.hasError('required')"
                 class="invalid-feedback"
               >
                 Please enter password.
               </div>
               <div
-                *ngIf="registerForm.get('password')?.hasError('pattern')"
+                *ngIf="empForm.get('phone')?.hasError('pattern')"
                 class="invalid-feedback"
               >
-                Password must be 6+ chars with 1 uppercase, 1 lowercase, 1
-                digit, and 1 special character.
+                Enter phone without country Code.
               </div>
             </div>
             <div class="text-center mt-2">
               <button
                 type="submit"
                 class="btn btn-primary"
-                [disabled]="!registerForm.valid"
+                [disabled]="!empForm.valid"
               >
-                Register
+                Submit
               </button>
-            </div>
-            <div class="text-center mt-2">
-              <span>Back to <a routerLink="/login">login!</a></span>
             </div>
           </form>
         </div>
@@ -125,4 +119,3 @@
     </div>
   </div>
 </div>
-

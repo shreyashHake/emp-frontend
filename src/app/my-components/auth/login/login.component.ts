@@ -39,6 +39,11 @@ export class LoginComponent implements OnInit {
         console.log('result : ' + response);
         console.log('Token : ' + token);
         console.log('Role : ' + role);
+
+        // Store token and role in local storage
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', role);
+
         this.router.navigate(['/home'])
       },
       error: (error) => {
@@ -47,4 +52,5 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
 }

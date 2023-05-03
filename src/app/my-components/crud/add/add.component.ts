@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
-  registerForm!: FormGroup;
+  empForm!: FormGroup;
   passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
 
   constructor(
@@ -20,24 +20,26 @@ export class AddComponent {
   }
 
   initializeForm() {
-    this.registerForm = new FormGroup({
+    this.empForm = new FormGroup({
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)])
-    })
+      phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')])
+    });
   }
 
   ngOnInit(): void {
 
   }
 
-  register() {
-    console.log(this.registerForm);
-    this.authService.register(this.registerForm.value).subscribe({
+  addEmployee() {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    console.log("Hehe :" + this.empForm);
+    this.authService.addEmployee(this.empForm.value, token).subscribe({
       next: (response) => {
-        this.registerForm.reset();
-        this.router.navigate(['login']);
+        this.empForm.reset();
+        this.router.navigate(['home']);
       },
       error: (err) => {
         console.log(err);
@@ -46,12 +48,5 @@ export class AddComponent {
     })
   }
 
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) => {
-      if (control.parent && control.parent instanceof FormGroup) {
-        return control.value === control.parent.controls[matchTo].value ? null : { isMatching: true };
-      }
-      return null;
-    }
-  }
+
 }

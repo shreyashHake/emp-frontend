@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -9,15 +9,19 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  // User login and register :
+
   isLoggedIn = false;
   baseUrl = "http://localhost:8080/api/v1/auth";
 
   constructor(private httpClient: HttpClient,
     private router: Router) { }
 
-  login(email:string, password:string) {
-    const user = {email, password};
+  login(email: string, password: string) {
+    const user = { email, password };
     this.isLoggedIn = true;
+    localStorage.setItem('isLoggedIn', 'true');
+
     return this.httpClient.post(`${this.baseUrl}/authenticate`, user);
   }
 
@@ -34,13 +38,22 @@ export class AuthService {
       )
   }
 
-
-
   logout() {
-    this.isLoggedIn = false;
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
   }
 
   isAuthenticated() {
-    return this.isLoggedIn;
+    return localStorage.getItem('isLoggedIn') == 'true';
+  }
+
+  // Employee management :
+  empUrl = "http://localhost:8080/api/v1/employee"
+  addEmployee(user: any, token: string | null): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.post(`${this.empUrl}/save`, user, { headers: headers });
   }
 }
